@@ -10,7 +10,6 @@
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, Segoe UI, 'Noto Sans JP',
             theme('fontFamily.serif');
-        color: #ffffff;
         background: theme('colors.slate.800');
     }
 }
