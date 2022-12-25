@@ -34,8 +34,7 @@ export default function Register() {
     return (
         <GuestLayout>
             <Head title="Register" />
-            <div className="md:px-20 lg:px-48">
-
+            <div className="px-[5%] md:px-[20%] lg:px-[30%]">
                 <form onSubmit={submit}>
                     <div>
                         <InputLabel forInput="name" value="Name" />
