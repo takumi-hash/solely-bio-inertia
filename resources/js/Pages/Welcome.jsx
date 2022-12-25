@@ -1,6 +1,6 @@
 import { Link, Head } from '@inertiajs/inertia-react';
 import Section from '../Components/Section'
-import CtaButton from '@/Components/Ctabutton';
+import CtaButton from '@/Components/CtaButton';
 import Card from '@/Components/Card';
 
 export default function Welcome(props) {
