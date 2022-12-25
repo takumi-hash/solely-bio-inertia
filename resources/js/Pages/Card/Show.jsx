@@ -7,7 +7,7 @@ export default function ShowCard({ user, links }) {
         <>
             <GuestLayout>
                 <Head title="Show Profile" />
-                <div className="min-w-[50%] mx-auto py-12">
+                <div className="min-w-[80%] md:min-w-[50%] mx-auto py-12">
                     {user ? (
                         <>
                             <Card user={user} links={links}></Card>
