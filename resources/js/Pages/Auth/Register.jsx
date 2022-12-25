@@ -9,6 +9,7 @@ import { Head, Link, useForm } from '@inertiajs/inertia-react';
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        handlename: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -50,6 +51,26 @@ export default function Register() {
                     />
 
                     <InputError message={errors.name} className="mt-2" />
+                </div>
+
+                <div className="mt-4">
+                    <InputLabel forInput="handlename" value="URL for your Bio" />
+                    <p className="mt-2 text-sm text-gray-500">solely.bio/</p>
+
+                    <TextInput
+                        id="handlename"
+                        name="handlename"
+                        value={data.handlename}
+                        className="mt-1 block w-full"
+                        autoComplete="handlename"
+                        handleChange={onHandleChange}
+                        required
+                    />
+
+                    <InputError message={errors.handlename} className="mt-2" />
+
+                    <p className="mt-2 text-xs text-gray-500">ex.) If your name is "John Appleseed", you might want to use "john-appleseed" for your url.</p>
+
                 </div>
 
                 <div className="mt-4">
