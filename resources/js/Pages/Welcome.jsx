@@ -5,10 +5,10 @@ import Card from '@/Components/Card';
 import GuestLayout from '@/Layouts/GuestLayout';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 
-export default function Welcome(props) {
+export default function Welcome({ auth }) {
 
     const demoUser = {
-        name: "John Appleseed",
+        name: "Jane Appleseed",
         image: "../../images/placeholder.webp",
         intro: "A weekend developer.",
     };
@@ -29,7 +29,7 @@ export default function Welcome(props) {
         <>
             <GuestLayout>
                 <Head title="Welcome" />
-                <Section>
+                <Section className="text-center">
                     <h1 className="text-4xl font-bold my-4">Solely</h1>
                     <p className="text-sm mb-4">
                         An online biography for a more civilized age.
@@ -39,9 +39,9 @@ export default function Welcome(props) {
                         and share it anywhere.
                     </p>
                 </Section>
-                <Section>
+                <Section className="text-center">
                     <p className="text-sm">solely.bio/u/your-name</p>
-                    <CtaButton linkto="/" text="Create your bio"></CtaButton>
+                    <CtaButton linkto="/register" text="Create your bio"></CtaButton>
                     <p className="text-slate-500">You can create one in a minute :)</p>
                 </Section>
                 <Section>
