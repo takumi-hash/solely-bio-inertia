@@ -1,7 +1,27 @@
 import { Link, Head } from '@inertiajs/inertia-react';
 import Section from '../Components/Section'
+import CtaButton from '@/Components/Ctabutton';
+import Card from '@/Components/Card';
 
 export default function Welcome(props) {
+
+    const demoUser = {
+        name: "John Appleseed",
+        intro: "A weekend developer."
+    };
+    const links =
+        [
+            {
+                title: "Github",
+                url: "https://github.com/takumi-hash"
+            },
+            {
+                title: "Podcast",
+                url: "https://anchor.fm/futakobookcast"
+            }
+        ]
+        ;
+
     return (
         <>
             <Head title="Welcome" />
@@ -55,7 +75,7 @@ export default function Welcome(props) {
                         <p className="text-slate-500">You can create one in a minute :)</p>
                     </Section>
                     <Section>
-                        <Card profile={demoProfile} links={demoProfile.links}></Card>
+                        <Card user={demoUser} links={links}></Card>
                     </Section>
                     <Section>
                         <h2 className="text-2xl mb-4">What is Solely for?</h2>
