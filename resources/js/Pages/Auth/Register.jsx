@@ -55,7 +55,7 @@ export default function Register() {
 
                 <div className="mt-4">
                     <InputLabel forInput="handlename" value="URL for your Bio" />
-                    <p className="mt-2 text-sm text-gray-500">solely.bio/</p>
+                    <p className="mt-2 text-sm text-gray-500">solely.bio/u/</p>
 
                     <TextInput
                         id="handlename"

@@ -48,8 +48,9 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status, clas
                 </div>
 
                 <div>
-                    <InputLabel for="handlename" value="Handle Name" />
+                    <InputLabel for="handlename" value="URL for your bio" />
 
+                    <p className="mt-2 text-sm text-gray-500">solely.bio/u/</p>
                     <TextInput
                         id="handlename"
                         className="mt-1 block w-full"
