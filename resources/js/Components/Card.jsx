@@ -3,7 +3,7 @@ import { Link } from '@inertiajs/inertia-react';
 export default function Card({ user, links, children }) {
     return (
         <div className="rounded-lg bg-white p-8">
-            <img src="https://placehold.jp/3d4070/ffffff/150x150.png" />
+            <img width="200" height="200" className="rounded-full mx-auto my-4" src={user.image ? user.image : "https://placehold.jp/ff5e00/ffffff/150x150.png"} />
             <h1 className="text-2xl text-slate-800">
                 {user.name}
             </h1>
