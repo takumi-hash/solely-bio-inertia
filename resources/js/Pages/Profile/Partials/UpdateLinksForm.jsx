@@ -2,25 +2,8 @@ import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
-import { Link, useForm as useInertiaForm, usePage } from '@inertiajs/inertia-react';
+import { Link, useForm, usePage } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
-
-import { set } from "lodash/fp";
-// import { useForm as useInertiaForm } from "@inertiajs/inertia-react";
-
-export function useForm(...args) {
-    const form = useInertiaForm(...args);
-
-    function setData(key, value) {
-        form.setData(
-            function (data) {
-                return set(key, value, data);
-            }
-        );
-    }
-
-    return { ...form, setData }
-}
 
 export default function UpdateLinksForm({ className }) {
     const links = usePage().props.links;
@@ -42,8 +25,8 @@ export default function UpdateLinksForm({ className }) {
     return (
         <section className={className}>
             <header>
-                {console.log(data)}
-                <h2 className="text-lg font-medium text-gray-900">My Links</h2>
+                {console.log(links)}
+                <h2 className="text-lg font-medium text-gray-900">Links</h2>
 
                 <p className="mt-1 text-sm text-gray-600">
                     Update your links.
@@ -64,7 +47,7 @@ export default function UpdateLinksForm({ className }) {
                                 id={'links[' + `${index}` + '].url'}
                                 className="mt-1 block w-[50%]"
                                 value={link.url}
-                                handleChange={(e) => setData('links[' + `${index}` + '].url', e.target.value)}
+                                handleChange={(e) => setData('data.links[' + `${index}` + '].url', e.target.value)}
                             />
                         </div>
                     );
