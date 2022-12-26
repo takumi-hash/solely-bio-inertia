@@ -1,16 +1,22 @@
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
+import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
-import { Link, useForm, usePage } from '@inertiajs/inertia-react';
+import { Link, useForm as useInertiaForm, usePage } from '@inertiajs/inertia-react';
+import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { Transition } from '@headlessui/react';
 
 export default function UpdateLinksForm({ className }) {
     const links = usePage().props.links;
 
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
-        links: links,
+    const { handleSubmit, control } = useForm();
+    const { fields, append, remove } = useFieldArray({ control, name: 'todo' });
+    const handleClick = (data) => {
+        console.log(data);
+    };
 
+    const { data, setData, patch, errors, processing, recentlySuccessful } = useInertiaForm({
         // name: links.name,
         // handlename: user.handlename,
         // email: user.email,
@@ -53,6 +59,31 @@ export default function UpdateLinksForm({ className }) {
                         </div>
                     );
                 })}
+                {/* test begins here */}
+                <SecondaryButton processing={processing} onClick={() => append({ task: '' })}>Append</SecondaryButton>
+                <form onSubmit={handleSubmit(handleClick)}>
+                    {fields.map((field, index) => {
+                        return (
+                            <div key={field.id}>
+                                <Controller
+                                    name={`todo.${index}.task`}
+                                    control={control}
+                                    render={({ field }) => (
+                                        <TextInput
+                                            id={'links[' + `${index}` + '].url'}
+                                            className="mt-1 block w-[50%]"
+                                            value={field.name}
+                                            handleChange={(e) => setData('data.links[' + `${index}` + '].url', e.target.value)}
+                                        />
+                                    )}
+                                />
+                                <SecondaryButton onClick={() => remove(index)}>Remove</SecondaryButton>
+                            </div>
+                        );
+                    })}
+                    <PrimaryButton type='submit'>Submit</PrimaryButton>
+                </form>
+                {/* ends here */}
                 <div className="flex items-center gap-4">
                     <PrimaryButton processing={processing}>Save</PrimaryButton>
 
