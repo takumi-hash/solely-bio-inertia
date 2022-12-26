@@ -14,4 +14,14 @@
             </div>
         </div>
     </div>
+    <x-slot name="card">
+        @foreach($links as $link)
+        <p>
+            {{ $link->title }}
+        </p>
+        <p>
+            {{ $link->url }}
+        </p>
+        @endforeach
+    </x-slot>
 </x-app-layout>
