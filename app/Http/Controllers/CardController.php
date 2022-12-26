@@ -22,6 +22,11 @@ class CardController extends Controller
             compact('user', 'links'));
     }
 
+    // public function edit(Request $request)
+    // {
+    //     $links = $request->user()->links()->get();
+    //     return view('dashboard',compact('links'));
+    // }
     public function edit(Request $request)
     {
         $links = $request->user()->links()->get();
