@@ -37,6 +37,17 @@ class CardController extends Controller
         ]);
     }
 
+    public function updateById($id, LinkUpdateRequest $request)
+    {
+        $link = Link::find($id);
+        $link->title = $request->title;
+        $link->url = $request->url;
+
+        $link->save();
+
+        // return Redirect::route('dashboard');
+    }
+
     public function update(LinkUpdateRequest $request)
     {
         foreach($request->links AS $item){
