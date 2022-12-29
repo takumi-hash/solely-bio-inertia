@@ -3,29 +3,32 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import SecondaryButton from '@/Components/SecondaryButton';
 import TextInput from '@/Components/TextInput';
+
 import { Link, useForm as useInertiaForm, usePage } from '@inertiajs/inertia-react';
 import { Controller, useFieldArray, useForm } from 'react-hook-form';
 import { Transition } from '@headlessui/react';
 
 export default function UpdateLinksForm({ className }) {
     const links = usePage().props.links;
-
-    const { handleSubmit, control } = useForm();
-    const { fields, append, remove } = useFieldArray({ control, name: 'todo' });
-    const handleClick = (data) => {
-        console.log(data);
-    };
-
     const { data, setData, patch, errors, processing, recentlySuccessful } = useInertiaForm({
+        links: links
         // name: links.name,
         // handlename: user.handlename,
         // email: user.email,
     });
 
-    const submit = (e) => {
-        e.preventDefault();
+    const { register, control, handleSubmit, reset, watch } = useForm({
+        defaultValues: {
+            links: links
+        }
+    });
+    const { fields, append, remove } = useFieldArray({
+        control,
+        name: 'links'
+    });
 
-        patch(route('link.update'));
+    const submit = (data) => {
+        patch(route('links.update'));
     };
 
     return (
@@ -39,54 +42,41 @@ export default function UpdateLinksForm({ className }) {
                 </p>
             </header>
 
-            <form onSubmit={submit} className="mt-6 space-y-6">
-                {links.map((link, index) => {
+            <form onSubmit={handleSubmit(submit)} className="mt-6 space-y-6">
+                <SecondaryButton processing={processing} onClick={() => append({ link: '' })}>Append</SecondaryButton>
+                {fields.map((field, index) => {
                     return (
-                        // TODO: dynamically populate forms
-                        <div key={link.id}>
-                            <TextInput
-                                id={'links[' + `${index}` + '].title'}
-                                className="mt-1 block w-[50%]"
-                                value={links[`${index}`].title}
-                                handleChange={(e) => setData('links[' + `${index}` + '].title', e.target.value)}
+                        <div key={field.id}>
+                            <input
+                                name={`links[${index}].title`}
+                                defaultValue={`${field.title}`}
+                                placeholder="Title"
+                                className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             />
-                            <TextInput
-                                id={'links[' + `${index}` + '].url'}
-                                className="mt-1 block w-[50%]"
-                                value={link.url}
-                                handleChange={(e) => setData('data.links[' + `${index}` + '].url', e.target.value)}
+                            <input
+                                name={`links[${index}].url`}
+                                defaultValue={`${field.url}`}
+                                placeholder="URL"
+                                className="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm"
                             />
+                            {/* <Controller
+                                         name={`links.${index}.item`}
+                                         control={control}
+                                         render={({ field }) => (
+                                             <TextInput
+                                                 id={'links[' + `${index}` + '].title'}
+                                                 className="mt-1 block w-[50%]"
+                                                 value={field.title}
+                                                 handleChange={(e) => setData('field.title', e.target.value)}
+                                             />
+                                         )}
+                                         />*/}
+                            <SecondaryButton onClick={() => remove(index)}>Remove</SecondaryButton>
                         </div>
                     );
                 })}
-                {/* test begins here */}
-                <SecondaryButton processing={processing} onClick={() => append({ task: '' })}>Append</SecondaryButton>
-                <form onSubmit={handleSubmit(handleClick)}>
-                    {fields.map((field, index) => {
-                        return (
-                            <div key={field.id}>
-                                <Controller
-                                    name={`todo.${index}.task`}
-                                    control={control}
-                                    render={({ field }) => (
-                                        <TextInput
-                                            id={'links[' + `${index}` + '].url'}
-                                            className="mt-1 block w-[50%]"
-                                            value={field.name}
-                                            handleChange={(e) => setData('data.links[' + `${index}` + '].url', e.target.value)}
-                                        />
-                                    )}
-                                />
-                                <SecondaryButton onClick={() => remove(index)}>Remove</SecondaryButton>
-                            </div>
-                        );
-                    })}
-                    <PrimaryButton type='submit'>Submit</PrimaryButton>
-                </form>
-                {/* ends here */}
                 <div className="flex items-center gap-4">
                     <PrimaryButton processing={processing}>Save</PrimaryButton>
-
                     <Transition
                         show={recentlySuccessful}
                         enterFrom="opacity-0"

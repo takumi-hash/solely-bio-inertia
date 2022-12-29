@@ -39,10 +39,12 @@ class CardController extends Controller
 
     public function update(LinkUpdateRequest $request)
     {
-        $request->user()->links()->fill($request->validated());
-
-        // TODO: add serialize
-        // $request->user()->links()->save();
+        foreach($request->links AS $item){
+            Link::updateOrCreate(
+                ['id' => $item['id']],
+                ['title' => $item['title'], 'url' => $item['url']]
+            );
+        }
 
         return Redirect::route('dashboard');
     
