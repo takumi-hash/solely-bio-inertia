@@ -22,6 +22,12 @@ class CardController extends Controller
             compact('user', 'links'));
     }
 
+    public function getOgp($handlename)
+    {
+        $user = User::where('handlename', '=', $handlename)->first();
+
+    }
+
     // public function edit(Request $request)
     // {
     //     $links = $request->user()->links()->get();

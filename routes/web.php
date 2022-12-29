@@ -30,6 +30,8 @@ Route::get('/u/{handlename}', [CardController::class, 'show'])->name(
     'card.show'
 );
 
+Route::get('/u/handlename}/ogp.png', [CardController::class,'getOgp'])->name('ogp.get');
+
 // Route::get('/dashboard', function () {
 //     return Inertia::render('Dashboard');
 // })
