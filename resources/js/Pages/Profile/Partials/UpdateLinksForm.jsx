@@ -28,7 +28,7 @@ export default function UpdateLinksForm({ links, className }) {
         name: 'links'
     });
     const onSubmit = (data) => {
-        axios.put(location.origin + '/links', data)
+        axios.patch(location.origin + '/links', data)
             .then(
                 response => alert(JSON.stringify(response.data))
             )
@@ -37,9 +37,6 @@ export default function UpdateLinksForm({ links, className }) {
             });
         console.log(data);
     };
-    // const onSubmit = (data) => {
-    //     patch(route('links.update'));
-    // };
 
     return (
         <section className={className}>
