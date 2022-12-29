@@ -39,13 +39,16 @@ class CardController extends Controller
 
     public function updateById($id, LinkUpdateRequest $request)
     {
-        $link = Link::find($id);
-        $link->title = $request->title;
-        $link->url = $request->url;
+
+        $link = $request->user()->links()->find($id);
+        $link = $link->fill($request->validated());
+        // $link = Link::find($id)->fill($request->validated());
+        // $link->title = $request->title;
+        // $link->url = $request->url;
 
         $link->save();
 
-        // return Redirect::route('dashboard');
+        return Redirect::route('dashboard');
     }
 
     public function update(LinkUpdateRequest $request)

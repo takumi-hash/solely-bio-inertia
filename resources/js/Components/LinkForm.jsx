@@ -1,14 +1,15 @@
+import React, { useState } from 'react';
+import { useForm } from '@inertiajs/inertia-react';
+import { Transition } from '@headlessui/react';
+
+import TextInput from '@/Components/TextInput';
 import InputError from '@/Components/InputError';
 import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
-import TextInput from '@/Components/TextInput';
-import React, { useState } from 'react';
-import { useForm, usePage } from '@inertiajs/inertia-react';
-import { Transition } from '@headlessui/react';
 import SecondaryButton from './SecondaryButton';
 
 export default function LinkForm({ link, className }) {
-    const { data, setData, patch, errors, processing, recentlySuccessful } = useForm({
+    const { data, setData, put, errors, processing, recentlySuccessful } = useForm({
         title: link.title,
         url: link.url,
     });
@@ -19,16 +20,17 @@ export default function LinkForm({ link, className }) {
     // };
     // Methods
     const onFinish = () => setLoading(false);
-    const onSubmit = () => {
+    function handleSubmit(e) {
+        e.preventDefault();
         setLoading(true);
         const url = route('links.updateById', link.id);
-        patch(url, data, { onFinish });
+        put(url, data, { onFinish });
     }
 
 
     return (
 
-        <form className="mt-6 space-y-6">
+        <form onSubmit={handleSubmit} className="mt-6 space-y-6">
             < div >
                 <InputLabel for="title" value="Title" />
 
@@ -60,7 +62,7 @@ export default function LinkForm({ link, className }) {
 
 
             <div className="flex items-center gap-4">
-                <PrimaryButton type="button" onClick={onSubmit} processing={processing}>Save</PrimaryButton>
+                <PrimaryButton type="submit" processing={processing}>Save</PrimaryButton>
                 <SecondaryButton processing={processing}>Delete</SecondaryButton>
 
                 <Transition
@@ -72,7 +74,6 @@ export default function LinkForm({ link, className }) {
                     <p className="text-sm text-gray-600">Saved.</p>
                 </Transition>
             </div>
-
         </form >
     );
 }

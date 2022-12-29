@@ -40,7 +40,7 @@ Route::get('/dashboard', [CardController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::patch('/links/{id}', [CardController::class, 'updateById'])
+Route::put('/links/{id}', [CardController::class, 'updateById'])
     ->middleware(['auth'])
     ->name('links.updateById');
 
