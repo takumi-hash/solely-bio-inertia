@@ -33,18 +33,18 @@ class CardController extends Controller
         $img = InterventionImage::make($path);
 
         //Add Text to image
-        $img->text($user->name, 520, 250, function ($font) {
+        $img->text($user->name, 220, 250, function ($font) {
             $font->file(public_path('fonts/NotoSansJP-Medium.otf'));
-            $font->size(62);
-            $font->color('#272A2C');
-            $font->align('center');
+            $font->size(74);
+            $font->color('#333333');
+            $font->align('left');
             $font->valign('top');
         });
-        $img->text('Full Bio at solely.bio/u/'.$user->handlename, 520, 340, function ($font) {
+        $img->text('Checkout solely.bio/u/'.$user->handlename .' for full bio.', 220, 340, function ($font) {
             $font->file(public_path('fonts/NotoSansJP-Medium.otf'));
             $font->size(32);
-            $font->color('#272A2C');
-            $font->align('center');
+            $font->color('#555555');
+            $font->align('left');
             $font->valign('top');
         });
 
