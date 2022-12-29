@@ -1,8 +1,3 @@
-import InputError from '@/Components/InputError';
-import InputLabel from '@/Components/InputLabel';
-import PrimaryButton from '@/Components/PrimaryButton';
-import SecondaryButton from '@/Components/SecondaryButton';
-import { usePage } from '@inertiajs/inertia-react';
 import LinkForm from '@/Components/LinkForm';
 
 export default function UpdateLinksForm(props, className) {
@@ -11,12 +6,10 @@ export default function UpdateLinksForm(props, className) {
         <section className={className}>
             <header>
                 <h2 className="text-lg font-medium text-gray-900">Links</h2>
-
                 <p className="mt-1 text-sm text-gray-600">
                     Update your links.
                 </p>
             </header>
-
             {items.map((link, index) => {
                 return (
                     <LinkForm key={index} link={link}></LinkForm>
