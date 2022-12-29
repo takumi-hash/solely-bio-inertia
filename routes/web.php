@@ -40,10 +40,9 @@ Route::get('/dashboard', [CardController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-    Route::patch('/links', [CardController::class, 'update'])
+Route::put('/links', [CardController::class, 'update'])
     ->middleware(['auth'])
     ->name('links.update');
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name(
