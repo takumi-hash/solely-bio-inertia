@@ -86,6 +86,13 @@ export default function Welcome({ auth }) {
                         information.
                     </p>
                 </Section>
+
+                <Section>
+                    <h2 className="text-2xl mb-4">Aknowlegements</h2>
+                    <p className="text-left mb-4">
+                        This website uses Noto Sans JP, which is licensed under SIL Open Font License (OFL)
+                    </p>
+                </Section>
             </GuestLayout>
         </>
     );
