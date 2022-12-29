@@ -9,8 +9,8 @@ export default function ShowCard({ user, links }) {
                 <title>The Rock (1996)</title>
                 <meta property="og:title" content={user.name} />
                 <meta property="og:type" content="website" />
-                <meta property="og:url" content={`"https://www.solely.bio/u/"+ ${user.handlename}`} />
-                <meta property="og:image" content={`"https://www.solely.bio/ogp_images/"+${user.handlename}+"ogp.jpg"`} />
+                <meta property="og:url" content={`https://www.solely.bio/u/${user.handlename}`} />
+                <meta property="og:image" content={`https://www.solely.bio/ogp_images/${user.handlename}/ogp.jpg`} />
             </Head>
             <GuestLayout>
                 <Head title="Show Profile" />
