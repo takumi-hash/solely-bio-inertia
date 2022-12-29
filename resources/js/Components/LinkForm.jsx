@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Inertia } from '@inertiajs/inertia';
 import { useForm } from '@inertiajs/inertia-react';
 import { Transition } from '@headlessui/react';
 
@@ -24,7 +25,9 @@ export default function LinkForm({ link, className }) {
         e.preventDefault();
         setLoading(true);
         const url = route('links.updateById', link.id);
-        put(url, data, { onFinish });
+        Inertia.put(url, data, {
+            preserveScroll: true
+        });
     }
 
 
@@ -62,7 +65,7 @@ export default function LinkForm({ link, className }) {
 
 
             <div className="flex items-center gap-4">
-                <PrimaryButton type="submit" processing={processing}>Save</PrimaryButton>
+                <PrimaryButton processing={processing}>Save</PrimaryButton>
                 <SecondaryButton processing={processing}>Delete</SecondaryButton>
 
                 <Transition
