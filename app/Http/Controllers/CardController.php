@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use InterventionImage;
+
 
 class CardController extends Controller
 {
@@ -26,6 +28,27 @@ class CardController extends Controller
     {
         $user = User::where('handlename', '=', $handlename)->first();
 
+        //Baase Image
+        $path = public_path('images/ogp.jpg');
+        $img = InterventionImage::make($path);
+
+        //Add Text to image
+        $img->text($user->name, 520, 250, function ($font) {
+            $font->file(public_path('fonts/NotoSansJP-Medium.otf'));
+            $font->size(62);
+            $font->color('#272A2C');
+            $font->align('center');
+            $font->valign('top');
+        });
+        $img->text('Full Bio at solely.bio/u/'.$user->handlename, 520, 340, function ($font) {
+            $font->file(public_path('fonts/NotoSansJP-Medium.otf'));
+            $font->size(32);
+            $font->color('#272A2C');
+            $font->align('center');
+            $font->valign('top');
+        });
+
+        return $img->response();
     }
 
     // public function edit(Request $request)
